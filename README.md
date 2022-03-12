@@ -2,11 +2,11 @@
 This repository includes MERN solutions to the advent of code 2021.
 
 ## Solved days
-- [] 4
+- [ ] 4
     - [x] part one
-    - [] part two
-- [] 5
-- [] 6
+    - [ ] part two
+- [ ] 5
+- [ ] 6
 
 ## Environment
 The repository assumes the following dependencies:
