@@ -37,4 +37,4 @@ yarn test <test-type> --coverage
 
 ## Notes
  - Currently the datafiles with .txt extension are not copied during the build operation, so manual moving/copying is required. This is not necessary for the `yarn dev` command.
- - Day 5 may be optimized by remembering which pulled numbers have already been iterated over.
+ - Day 4 may be optimized by remembering which pulled numbers have already been iterated over.
