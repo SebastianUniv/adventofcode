@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-import { ISolver } from '../app';
+import { IPartSolver } from '../app';
 
 // Definition of the bingo board structure
 type Board = {
@@ -10,7 +10,7 @@ type Board = {
 }
 
 // Load bingo boards
-export function loadBoards(filePath: string): Board[] {
+export function loadData(filePath: string): Board[] {
     const data = fs.readFileSync(path.join(__dirname, `./data/${filePath}.txt`), 'utf-8');
     let boards: Board[] = [];
 
@@ -55,7 +55,7 @@ export function loadBoards(filePath: string): Board[] {
     return boards;
 }
 
-abstract class DaySolver implements ISolver {
+abstract class DaySolver implements IPartSolver {
     boards: Board[];
     pulledNumbers: number[];
     lastPulledNumber: number | undefined;
@@ -204,4 +204,4 @@ export class PartTwoSolver extends DaySolver {
 }
 
 // Export to app
-export default { partOne: PartOneSolver, partTwo: PartTwoSolver };
+export default { partOne: PartOneSolver, partTwo: PartTwoSolver, loadData };

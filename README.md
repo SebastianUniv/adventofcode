@@ -3,10 +3,10 @@ This repository includes MERN solutions to the advent of code 2021.
 
 ## Solved days
 - [x] 4
-- [ ] 5
+- [x] 5
+- [ ] 6
     - [ ] Part One
     - [ ] Part Two
-- [ ] 6
 
 ## Environment
 The repository assumes the following dependencies:
@@ -36,4 +36,5 @@ yarn test <test-type> --coverage
 ```
 
 ## Notes
-Currently the datafiles with .txt extension are not copied during the build operation, so manual moving/copying is required. This is not necessary for the `yarn dev` command.
+ - Currently the datafiles with .txt extension are not copied during the build operation, so manual moving/copying is required. This is not necessary for the `yarn dev` command.
+ - Day 5 may be optimized by remembering which pulled numbers have already been iterated over.
