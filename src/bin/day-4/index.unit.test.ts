@@ -1,4 +1,4 @@
-import { loadBoards, PartOneSolver } from './index';
+import { loadBoards, PartOneSolver, PartTwoSolver } from './index';
 import untypedPulledTestNumbers from './data/test/pulledNumbers.json';
 
 // Type imported data
@@ -32,11 +32,20 @@ describe('bingo boards', () => {
 });
 
 describe('solution', () => {
-    test('part 1 should return correct test score', () => {
+    test('part 1 should return correct score', () => {
         const boards = loadBoards('test/boards');
         const expectedScore = 4512;
 
         const solver = new PartOneSolver(boards, pulledTestNumbers);
+
+        expect(solver.solve()).toEqual(expectedScore);
+    });
+
+    test('part 2 should return correct score', () => {
+        const boards = loadBoards('test/boards');
+        const expectedScore = 1924;
+
+        const solver = new PartTwoSolver(boards, pulledTestNumbers);
 
         expect(solver.solve()).toEqual(expectedScore);
     });

@@ -13,6 +13,8 @@ export interface ISolver {
 export function solveDays() {
     let solver = new day4.partOne(loadBoards('boards'), pulledTestNumbers);
     console.log(solver.solve());
+    solver = new day4.partTwo(loadBoards('boards'), pulledTestNumbers);
+    console.log(solver.solve());
 }
 
 solveDays();
