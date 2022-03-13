@@ -55,6 +55,7 @@ export function loadData(filePath: string): Board[] {
     return boards;
 }
 
+// Class containing logic that applies to both parts
 abstract class DaySolver implements IPartSolver {
     boards: Board[];
     pulledNumbers: number[];

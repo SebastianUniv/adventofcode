@@ -80,6 +80,7 @@ export function loadData(filePath: string): Line[] {
     return ventLines;
 }
 
+// Class containing logic that applies to both parts
 abstract class DaySolver implements IPartSolver {
     lines: Line[];
     diagram: number[][];
@@ -106,14 +107,14 @@ abstract class DaySolver implements IPartSolver {
                     break;
                 case Orientation.Horizontal:
                     lineLength = line.end.x - line.start.x;
-
+                    // Loop over all points in the diagram which are covered by the line
                     for (let i = 0; i < (lineLength + 1); i++) {
                         this.diagram[line.start.y][line.start.x + i] += 1;
                     }
                     break;
                 case Orientation.Vertical:
                     lineLength = line.end.y - line.start.y;
-
+                    // Loop over all points in the diagram which are covered by the line
                     for (let i = 0; i < (lineLength + 1); i++) {
                         this.diagram[line.start.y + i][line.start.x] += 1;
                     }
@@ -149,6 +150,7 @@ abstract class DaySolver implements IPartSolver {
     protected calculateScore(): number {
         let score: number = 0;
 
+        // Determine score by counting places where vent lines intersect
         for (let y = 0; y < this.diagram.length; y++) {
             for (let x = 0; x < this.diagram[y].length; x++) {
                 if (this.diagram[y][x] >= 2) {

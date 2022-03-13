@@ -4,9 +4,7 @@ This repository includes MERN solutions to the advent of code 2021.
 ## Solved days
 - [x] 4
 - [x] 5
-- [ ] 6
-    - [ ] Part One
-    - [ ] Part Two
+- [x] 6
 
 ## Environment
 The repository assumes the following dependencies:

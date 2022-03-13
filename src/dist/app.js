@@ -1,40 +1,38 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.solveDays = void 0;
-const day_4_1 = __importStar(require("./day-4"));
+const day_4_1 = __importDefault(require("./day-4"));
+const day_5_1 = __importDefault(require("./day-5"));
+const day_6_1 = __importDefault(require("./day-6"));
 const pulledNumbers_json_1 = __importDefault(require("./day-4/data/pulledNumbers.json"));
 // Type imported data
 const pulledTestNumbers = pulledNumbers_json_1.default;
 // Solve all defined days
 function solveDays() {
-    let solver = new day_4_1.default.partOne((0, day_4_1.loadBoards)('boards'), pulledTestNumbers);
-    console.log(solver.solve());
+    let startingDay = 4;
+    let solvers = [
+        {
+            partOne: new day_4_1.default.partOne(day_4_1.default.loadData('boards'), pulledTestNumbers),
+            partTwo: new day_4_1.default.partTwo(day_4_1.default.loadData('boards'), pulledTestNumbers)
+        },
+        {
+            partOne: new day_5_1.default.partOne(day_5_1.default.loadData('data')),
+            partTwo: new day_5_1.default.partTwo(day_5_1.default.loadData('data'))
+        },
+        {
+            partOne: new day_6_1.default.partOne(day_6_1.default.loadData('state')),
+            partTwo: new day_6_1.default.partTwo(day_6_1.default.loadData('state'))
+        }
+    ];
+    solvers.forEach((solver, index) => {
+        console.log(`[Day-${startingDay + index}]--------`);
+        console.log('Part One: ' + solver.partOne.solve());
+        console.log('Part Two: ' + solver.partTwo.solve());
+        console.log('\n');
+    });
 }
 exports.solveDays = solveDays;
 solveDays();

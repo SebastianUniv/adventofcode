@@ -1,4 +1,4 @@
-import { loadBoards, PartOneSolver, PartTwoSolver } from './index';
+import { loadData, PartOneSolver, PartTwoSolver } from './index';
 import untypedPulledTestNumbers from './data/test/pulledNumbers.json';
 
 // Type imported data
@@ -7,7 +7,7 @@ const pulledTestNumbers: number[] = untypedPulledTestNumbers;
 describe('day 4', () => {
     describe('data', () => {
         // Check data is valid for both test and real data
-        const cases = [[loadBoards('test/boards')], [loadBoards('boards')]]
+        const cases = [[loadData('test/boards')], [loadData('boards')]]
 
         test.each(cases)('should return correct bingo board objects', (boards) => {
             boards.forEach(board => {
@@ -34,7 +34,7 @@ describe('day 4', () => {
 
     describe('solution', () => {
         test('part 1 should return correct test score', () => {
-            const boards = loadBoards('test/boards');
+            const boards = loadData('test/boards');
             const expectedScore = 4512;
 
             const solver = new PartOneSolver(boards, pulledTestNumbers);
@@ -43,7 +43,7 @@ describe('day 4', () => {
         });
 
         test('part 2 should return correct test score', () => {
-            const boards = loadBoards('test/boards');
+            const boards = loadData('test/boards');
             const expectedScore = 1924;
 
             const solver = new PartTwoSolver(boards, pulledTestNumbers);

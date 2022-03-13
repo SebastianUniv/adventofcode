@@ -1,5 +1,6 @@
 import day4 from './day-4';
 import day5 from './day-5';
+import day6 from './day-6';
 import untypedPulledTestNumbers from './day-4/data/pulledNumbers.json';
 
 // Type imported data
@@ -26,6 +27,10 @@ export function solveDays() {
         {
             partOne: new day5.partOne(day5.loadData('data')),
             partTwo: new day5.partTwo(day5.loadData('data'))
+        },
+        {
+            partOne: new day6.partOne(day6.loadData('state')),
+            partTwo: new day6.partTwo(day6.loadData('state'))
         }
     ];
 
@@ -33,6 +38,7 @@ export function solveDays() {
         console.log(`[Day-${startingDay + index}]--------`);
         console.log('Part One: ' + solver.partOne.solve());
         console.log('Part Two: ' + solver.partTwo.solve());
+        console.log('\n');
     })
 }
 
