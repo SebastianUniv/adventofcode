@@ -98,50 +98,22 @@ abstract class DaySolver implements IPartSolver {
 
     protected mapLinesToDiagram() {
         this.lines.forEach(line => {
-            let lineLength: number | undefined;
-            let tracker: Point | undefined;
             // Add vents to diagram based on the orientation
             switch (line.orientation as Orientation) {
                 case Orientation.Point:
                     this.diagram[line.start.y][line.start.x] += 1;
                     break;
                 case Orientation.Horizontal:
-                    lineLength = line.end.x - line.start.x;
-                    // Loop over all points in the diagram which are covered by the line
-                    for (let i = 0; i < (lineLength + 1); i++) {
-                        this.diagram[line.start.y][line.start.x + i] += 1;
-                    }
+                    this.mapHorizontal(line);
                     break;
                 case Orientation.Vertical:
-                    lineLength = line.end.y - line.start.y;
-                    // Loop over all points in the diagram which are covered by the line
-                    for (let i = 0; i < (lineLength + 1); i++) {
-                        this.diagram[line.start.y + i][line.start.x] += 1;
-                    }
+                    this.mapVertical(line);
                     break;
                 case Orientation.Left:
-                    tracker = line.start;
-                    if (!tracker) {
-                        return;
-                    }
-                    // Keep adding vents until the tracking point is the same as the end point
-                    while (line.end.x - 1 != tracker.x && line.end.y + 1 != tracker.y) {
-                        this.diagram[tracker.y][tracker.x] += 1;
-                        tracker.x -= 1;
-                        tracker.y += 1;
-                    }
+                    this.mapLeftDiagonal(line);
                     break;
                 case Orientation.Right:
-                    tracker = line.start;
-                    if (!tracker) {
-                        return;
-                    }
-                    // Keep adding vents until the tracking point is the same as the end point
-                    while (line.end.x + 1 != tracker.x && line.end.y + 1 != tracker.y) {
-                        this.diagram[tracker.y][tracker.x] += 1;
-                        tracker.x += 1;
-                        tracker.y += 1;
-                    }
+                    this.mapRightDiagonal(line);
                     break;
             }
         });
@@ -159,6 +131,48 @@ abstract class DaySolver implements IPartSolver {
             }
         }
         return score;
+    }
+
+    private mapHorizontal(line: Line) {
+        let lineLength = line.end.x - line.start.x;
+        // Loop over all points in the diagram which are covered by the line
+        for (let i = 0; i < (lineLength + 1); i++) {
+            this.diagram[line.start.y][line.start.x + i] += 1;
+        }
+    }
+
+    private mapVertical(line: Line) {
+        let lineLength = line.end.y - line.start.y;
+        // Loop over all points in the diagram which are covered by the line
+        for (let i = 0; i < (lineLength + 1); i++) {
+            this.diagram[line.start.y + i][line.start.x] += 1;
+        }
+    }
+
+    private mapLeftDiagonal(line: Line) {
+        let tracker = line.start;
+        if (!tracker) {
+            return;
+        }
+        // Keep adding vents until the tracking point is the same as the end point
+        while (line.end.x - 1 != tracker.x && line.end.y + 1 != tracker.y) {
+            this.diagram[tracker.y][tracker.x] += 1;
+            tracker.x -= 1;
+            tracker.y += 1;
+        }
+    }
+
+    private mapRightDiagonal(line: Line) {
+        let tracker = line.start;
+        if (!tracker) {
+            return;
+        }
+        // Keep adding vents until the tracking point is the same as the end point
+        while (line.end.x + 1 != tracker.x && line.end.y + 1 != tracker.y) {
+            this.diagram[tracker.y][tracker.x] += 1;
+            tracker.x += 1;
+            tracker.y += 1;
+        }
     }
 }
 
