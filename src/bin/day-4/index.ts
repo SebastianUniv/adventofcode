@@ -16,11 +16,10 @@ export function loadData(filePath: string): Board[] {
 
     // Split loaded text data into lines so that they can be parsed separately
     const lines = data.split('\r\n');
-    let lineCount = 0;
+    let lineCount = 1;
     let board: Board | undefined;
 
-    for (let i = 0; i < lines.length; i++) {
-        lineCount++;
+    for (let i = 0; i < lines.length; i++, lineCount++) {
         // Boards are seperated by an empty line,
         // so every 6th line needs to be skipped
         if (lineCount > 5) {
@@ -43,13 +42,9 @@ export function loadData(filePath: string): Board[] {
                 rowCount: new Array(5).fill(0)
             }
         }
-        // Prevent TS error, this should never evaluate to true
-        if (!board) {
-            continue;
-        }
         // Parse current line to array of numbers,
         // add it to certain board row depending on the lineCount
-        board.numbers[lineCount - 1] = lines[i].trim().split(/\s+/g).map(Number);
+        board!.numbers[lineCount - 1] = lines[i].trim().split(/\s+/g).map(Number);
     }
 
     return boards;
@@ -91,7 +86,6 @@ abstract class DaySolver implements IPartSolver {
                     if (!ignoreWinning) {
                         return [[this.boards[curBoard]], [curBoard]];
                     } else {
-                        //console.log('winner!')
                         winner.push(this.boards[curBoard]);
                         index.push(curBoard);
                     }
