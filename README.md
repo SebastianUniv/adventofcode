@@ -15,6 +15,12 @@ The repository assumes the following dependencies:
 ## Usage
 The following commands should be executed in the src directory.
 
+### Setup
+Install project dependencies:
+```sh
+yarn install
+```
+
 ### Commands
 Build JavaScript from TypeScript:
 ```sh
