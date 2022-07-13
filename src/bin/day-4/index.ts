@@ -15,7 +15,7 @@ export function loadData(filePath: string): Board[] {
     let boards: Board[] = [];
 
     // Split loaded text data into lines so that they can be parsed separately
-    const lines = data.split('\r\n');
+    const lines = data.split(/\r?\n/);
     let lineCount = 1;
     let board: Board | undefined;
 

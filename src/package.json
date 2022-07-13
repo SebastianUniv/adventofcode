@@ -9,9 +9,11 @@
     "build": "tsc",
     "start": "node ./dist/app.js",
     "dev": "ts-node ./bin/app.ts",
-    "test": "jest"
+    "test": "jest ./bin"
   },
-  "dependencies": {},
+  "dependencies": {
+    "eslint": "^8.19.0"
+  },
   "devDependencies": {
     "@types/jest": "^27.4.1",
     "jest": "^27.5.1",

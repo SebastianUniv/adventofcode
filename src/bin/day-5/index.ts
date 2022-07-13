@@ -26,7 +26,7 @@ export function loadData(filePath: string): Line[] {
     let ventLines: Line[] = [];
 
     // Split loaded text data into lines so that they can be parsed separately
-    const lines = data.split('\r\n');
+    const lines = data.split(/\r?\n/);
 
     for (let i = 0; i < lines.length; i++) {
         // Split line into two points
